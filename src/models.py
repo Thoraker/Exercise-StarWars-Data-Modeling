@@ -18,15 +18,7 @@ class Users(Base):
     mail = Column(String(250), nullable=False)
     first_name = Column(String(250), nullable=True)
     last_name = Column(String(250), nullable=True)
-
-
-class Sections(Base):
-    __tablename__ = "section"
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
-    id = Column(Integer, primary_key=True)
-    section_name = Column(String(250))
-    data_url = Column(String(250))
+    favorite = relationship(Favorites)
 
 
 class Planets(Base):
@@ -85,6 +77,17 @@ class Films(Base):
     character_id = Column(Integer, ForeignKey("character.id"))
     vehicle_id = Column(Integer, ForeignKey("vehicle.id"))
     planet_id = Column(Integer, ForeignKey("planet.id"))
+    specie_id = Column(Integer, ForeignKey("specie.id"))
+
+
+class Sections(Base):
+    __tablename__ = "section"
+    # Here we define columns for the table address.
+    # Notice that each column is also a normal Python instance attribute.
+    id = Column(Integer, primary_key=True)
+    section_name = Column(String(250))
+    data_url = Column(String(250))
+    favorite = relationship(Favorites)
 
 
 class Favorites(Base):
